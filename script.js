@@ -7,6 +7,7 @@ function clear(){
 
 }
 let calculator = []
+let historytable = document.querySelector('.history')
 let zero = document.querySelector('.btn-0')
 let one = document.querySelector('.btn-1')
 let two = document.querySelector('.btn-2')
@@ -103,22 +104,29 @@ multiple.addEventListener('click',function(){
 equals.addEventListener('click',function(){
     
     calculator.push(+number)
-    let a = calculator[0]
-    let b = calculator[2]
+    let a = +calculator[0]
+    let b = +calculator[2]
+    let c = ""
     if(calculator.includes('+')){
         expression_field.value = a+b
+        c = "+"
         
     }
     if(calculator.includes('-')){
         expression_field.value = a-b
-        
+        c = "-"
     }
     if(calculator.includes('*')){
         expression_field.value = a*b
+        c = "*"
         
     }
     if(calculator.includes('/')){
         expression_field.value = a/b
+        c = "/"
         
     }
+    calculator[0] = expression_field.value 
+    historytable.innerHTML += '<div class =\'element\'>'+ a + ' ' + c + ' ' + b + ' = ' + expression_field.value + '</div>'
 })
+    
