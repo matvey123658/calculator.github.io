@@ -6,6 +6,7 @@ function clear(){
     number = ''
 
 }
+
 let calculator = []
 let historytable = document.querySelector('.history')
 let zero = document.querySelector('.btn-0')
@@ -71,41 +72,46 @@ let minus = document.querySelector('.btn-minus')
 let divide = document.querySelector('.btn-div')
 let multiple = document.querySelector('.btn-mult')
 let point = document.querySelector('.btn-point')
+let clear_history = document.querySelector('.clear-history')
 let answer = 0
 point.addEventListener('click',function(){
     expression_field.value += '.'
     number += '.'
 })
 plus.addEventListener('click',function(){
+    calculator.push(+expression_field.value)
     expression_field.value += plus.innerHTML
-    calculator.push(+number)
     calculator.push('+')
     number = ''
 })
-   
+
 minus.addEventListener('click',function(){
+    calculator.push(+expression_field.value)
     expression_field.value += minus.innerHTML
-    calculator.push(+number)
     calculator.push('-')
     number = ''
 })
 divide.addEventListener('click',function(){
+    calculator.push(+expression_field.value)
     expression_field.value += divide.innerHTML
-    calculator.push(+number)
     calculator.push('/')
     number = ''
 })
 multiple.addEventListener('click',function(){
+    calculator.push(+expression_field.value)
     expression_field.value += multiple.innerHTML
-    calculator.push(+number)
     calculator.push('*')
     number = ''
+})
+clear_history.addEventListener('click',function(){
+    historytable.innerHTML = '' 
 })
 equals.addEventListener('click',function(){
     
     calculator.push(+number)
     let a = +calculator[0]
     let b = +calculator[2]
+    console.log(calculator)
     let c = ""
     if(calculator.includes('+')){
         expression_field.value = a+b
@@ -126,7 +132,11 @@ equals.addEventListener('click',function(){
         c = "/"
         
     }
-    calculator[0] = expression_field.value 
+    
     historytable.innerHTML += '<div class =\'element\'>'+ a + ' ' + c + ' ' + b + ' = ' + expression_field.value + '</div>'
+    calculator = []
+   
+  
+   
 })
     
